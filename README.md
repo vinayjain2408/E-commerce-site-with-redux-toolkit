@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+In My Project We can make a project for Shopping site
+We can make that project with the help of react redux toolkit
+IN this we see a product for purchares
+and we can add product in your Cart
+we can see remove in a cart component when we don't need of that product

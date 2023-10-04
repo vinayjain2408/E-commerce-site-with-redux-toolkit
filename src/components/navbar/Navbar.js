@@ -81,7 +81,7 @@ function Navbar() {
 
       <div className="bg-black p-4 w-full flex justify-around">
         <div className="text-white font-roboto text-base font-medium tracking-normal leading-none text-center ">
-          50%
+          50% OFF
         </div>
         <div className="text-white font-roboto text-base font-medium tracking-normal leading-none text-center ">
           Free Shinpping and returns

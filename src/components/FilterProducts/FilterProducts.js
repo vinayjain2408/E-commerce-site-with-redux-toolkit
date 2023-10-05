@@ -9,12 +9,22 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
+import Error from "../Error/Error";
+import {
+  filterProducts,
+  singleProduct,
+  filterGender,
+  sortByPrice,
+  filterByColor,
+  filterBySize,
+} from "../../features/slice/ProductSlice";
 
 function FilterProducts() {
   const products = useSelector((state) => state.products.filterProducts);
-  console.log("products in filter product", products);
+  // console.log("products in filter product", products);
+  const error = useSelector((state) => state.products.error);
   const { type } = useParams();
-  console.log("params", type);
+  // console.log("params", type);
 
   const genderButtons = ["male", "female"];
   const colorButtons = [
@@ -49,7 +59,7 @@ function FilterProducts() {
                       variant="outlined"
                       ripple={true}
                       className="text-black hover:bg-gray-300 duration-300 ease-in-out mr-4"
-                      // onClick={() => dispatch(filterGender(Item))}
+                      onClick={() => dispatch(filterGender(Item))}
                     >
                       {Item}
                     </Button>
@@ -62,7 +72,7 @@ function FilterProducts() {
                 variant="outlined"
                 ripple={true}
                 className="text-black hover:bg-gray-300 duration-300 ease-in-out mr-4"
-                // onClick={() => dispatch(filterGender(Item))}
+                onClick={() => dispatch(sortByPrice())}
               >
                 Hight Price
               </Button>
@@ -79,19 +89,23 @@ function FilterProducts() {
                   </Button>
                 </MenuHandler>
                 <MenuList>
-                  {
-                    colorButtons.map((color,index)=>{
-                      return(
-                        <MenuItem style={{color:color}} key={index}>{color}</MenuItem>
-                      )
-                    })
-                  }
-                 
+                  {colorButtons.map((color, index) => {
+                    return (
+                      <MenuItem
+                        style={{ color: color }}
+                        key={index}
+                        onClick={() => dispatch(filterByColor(color))}
+                      >
+                        {color}
+                      </MenuItem>
+                    );
+                  })}
                 </MenuList>
               </Menu>
               <Menu>
                 <MenuHandler>
                   <Button
+                   disabled={type === "Bags" || type === "Shoes"}
                     color="gray"
                     size="lg"
                     variant="outlined"
@@ -102,14 +116,16 @@ function FilterProducts() {
                   </Button>
                 </MenuHandler>
                 <MenuList>
-                  {
-                    sizeButtons.map((size,index)=>{
-                      return(
-                        <MenuItem key={index}>{size}</MenuItem>
-                      )
-                    })
-                  }
-                 
+                  {sizeButtons.map((size, index) => {
+                    return (
+                      <MenuItem
+                        key={index}
+                        onClick={() => dispatch(filterBySize(size))}
+                      >
+                        {size}
+                      </MenuItem>
+                    );
+                  })}
                 </MenuList>
               </Menu>
             </div>
@@ -120,31 +136,35 @@ function FilterProducts() {
                 variant="outlined"
                 ripple={true}
                 className="text-black hover:bg-gray-300 duration-300 ease-in-out mr-4"
-                // onClick={() => dispatch(filterProducts(type))}
+                onClick={() => dispatch(filterProducts(type))}
               >
                 Clear Filter
               </Button>
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-4 justify-items-center py-8 gap-12 m-8">
-          {products
-            .filter((product) => product.type === type)
-            .map((product, index) => {
-              return (
-                <div key={index} className="w-">
-                  <ProductsCard
-                    id={product.id}
-                    name={product.name}
-                    text={product.text}
-                    img={product.img}
-                    price={product.price}
-                    colors={product.color}
-                  />
-                </div>
-              );
-            })}
-        </div>
+        {error ? (
+          <Error />
+        ) : (
+          <div className="grid grid-cols-4 justify-items-center py-8 gap-12 m-8">
+            {products
+              .filter((product) => product.type === type)
+              .map((product, index) => {
+                return (
+                  <div key={index} className="w-">
+                    <ProductsCard
+                      id={product.id}
+                      name={product.name}
+                      text={product.text}
+                      img={product.img}
+                      price={product.price}
+                      colors={product.color}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        )}
       </div>
     </div>
   );

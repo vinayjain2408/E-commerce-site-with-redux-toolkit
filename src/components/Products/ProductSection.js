@@ -9,7 +9,7 @@ function ProductSection() {
           SUMMER T-Shirt SALE 30%
         </h2>
       </div>
-      <div className="grid grid-cols-3 justify-center py-8 gap-4 mx-auto max-w-6xl">
+      <div className="grid grid-cols-3 justify-center py-8 gap-4 mx-auto max-w-5xl">
         {storeData.slice(0, 6).map((product, index) => {
           return (
             <div key={index}>

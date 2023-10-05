@@ -26,11 +26,11 @@ function Slider() {
             >
               <div>
                 {parseInt(item.id) === slideIndex && (
-                  <img className="h-[850px] w-full" src={item.img} alt="shoes" />
+                  <img className="h-[700px] w-full" src={item.img} alt="shoes" />
                 )}
               </div>
-              <div className="absolute top-40 mx-auto inset-x-1/4">
-                <p className="text-white text-4xl font-roboto font-bold ">
+              <div className="absolute top-24 mx-auto inset-x-1/4">
+                <p className="text-white text-4xl font-roboto font-bold text-center">
                   {parseInt(item.id) === slideIndex && item.text}
                 </p>
               </div>
@@ -45,7 +45,7 @@ function Slider() {
               <div
                 className={
                   index === slideIndex
-                    ? "bg-green-300 rounded-full p-4 cursor-pointer"
+                    ? "bg-green-500 rounded-full p-4 cursor-pointer"
                     : "bg-white rounded-full p-4 cursor-pointer"
                 }
                 onClick={() => dispatch(dotSlider(index))}

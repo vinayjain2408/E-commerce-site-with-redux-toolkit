@@ -17,11 +17,11 @@ function ProductItem({ id, img, name, text, size, price, color, totalPrice }) {
   const defaultColor = color[0];
   return (
     <div>
-      <Card className="w-90">
+      <Card className="w-80">
         <CardHeader floated={false} className="h-96">
           <img src={img} alt={name} />
         </CardHeader>
-        <CardBody className="text-center">
+        <CardBody className="p-4  text-center">
           <Typography variant="h4" color="blue-gray" className="mb-2">
             {name}
           </Typography>
@@ -41,7 +41,7 @@ function ProductItem({ id, img, name, text, size, price, color, totalPrice }) {
             </Typography>
           </div>
         </CardBody>
-        <CardFooter className="flex justify-center gap-7 pt-2">
+        <CardFooter className="p-2 flex justify-center ">
           <Tooltip content="Add to Cart" placement="bottom">
             <Button
               size="lg"
